@@ -22,18 +22,15 @@ def add_face(image_path, id):
     known_names.append(id)
 
 def find_face(image_path):
-    print("alive")
     image = face_recognition.load_image_file(image_path)
-    print("alive2")
+
     locations = face_recognition.face_locations(image, model=MODEL)
-    print("alive3")
+
     encodings = face_recognition.face_encodings(image, locations)
-    print("alive4")
+
 
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-    print("alive5")
 
-    print(f'found {len(encodings)} face(s)')
     for face_encoding, face_location in zip(encodings, locations):
 
         results = face_recognition.compare_faces(known_faces, face_encoding, TOLERANCE)
@@ -61,14 +58,8 @@ def find_face(image_path):
     return image
 
 def test():
-    print("hi1")
     for name in os.listdir(KNOWN_FACES_DIR):
-        print("hi2")
         add_face(f'{KNOWN_FACES_DIR}/{name}', name)
-    print("hi3")
+
     img = find_face('/home/kamil/Desktop/HACKATON/python_server/uploads/1.jpg')
-    print("hi4")
     cv2.imwrite('/home/kamil/Desktop/HACKATON/python_server/test.jpg', img)
-    print("hi5")
-#imgplot = plt.imshow(img)
-#plt.show()

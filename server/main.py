@@ -5,7 +5,7 @@ import os
 import cnn
 
 app = Flask(__name__)
-UPLOAD_FOLDER = '/home/kamil/Desktop/HACKATON/python_server/uploads'
+UPLOAD_FOLDER = 'server/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 redis = Redis(host='redis', port=6379)
